@@ -1407,3 +1407,7 @@ left: 35%;
 .order-form-section {
 	margin-top: 12%;
 }
+/*******************************************/
+.autocomplete-item-text{
+	text-align: left
+}
