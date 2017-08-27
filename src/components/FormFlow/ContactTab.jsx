@@ -18,7 +18,7 @@ export default class ContactTab extends Component {
             "email": e.target.email.value
             };
             
-        console.log('Success----------', payload)
+       this.props.updateContactTabData(payload)
        
     }
 

@@ -28,7 +28,7 @@ export default class TimeTab extends Component {
                 "time": this.state.time
             };
             
-            console.log('Success----------', payload)
+            this.props.updateTimeTabData(payload)
        
     }
 

@@ -5,17 +5,34 @@ import ContactTab from './ContactTab';
 import PaymentTab from './PaymentTab'; 
 import TimeTab from './TimeTab';
 
+//import jsonfile from 'jsonfile';
+import fs from 'fs';
+import orderDetails from './../Main/orderDetails.json';
+
 
 export default class FormFlow extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { 
-            address: '',
-            serviceType: '0'
+        this.state = {            
+            ac_type: "",
+            location: "",
+            service_type: "",
+            address: "",
+            date: "",
+            pincode: "",
+            time: "",
+            contact_number: "",
+            email: "",
+            name: "",
+            payment_mode: ""
+
          }
-        this.onChange = (address) => this.setState({ address })
-        this.handleServiceType = this.handleServiceType.bind(this);
+        this.handleDataInsertion = this.handleDataInsertion.bind(this);
+        this.handleLocationTabData = this.handleLocationTabData.bind(this);
+        this.handleTimeTabData = this.handleTimeTabData.bind(this);               
+        this.handleContactTabData= this.handleContactTabData.bind(this);
+        this.handlePaymentTabData = this.handlePaymentTabData.bind(this);
       }
 
     componentDidMount() {
@@ -28,31 +45,64 @@ export default class FormFlow extends Component {
             });
         
         }
+        
+        
     }
-    handleServiceType (e) {
-        console.log("__________",e.target.value);
-        this.setState({serviceType: e.target.value})
+    handleDataInsertion () {
+        var temp = {
+            orderID : orderDetails.length + 1,
+            ac_type: this.state.ac_type ,
+            location: this.state.location,
+            service_type: this.state.service_type,
+            address: this.state.address,
+            date: this.state.date,
+            pincode: this.state.pincode,
+            time: this.state.time,
+            contact_number: this.state.contact_number,
+            email: this.state.email,
+            name: this.state.name,
+            payment_mode: this.state.payment_mode 
+        }        
+        orderDetails.push(temp);
+        // var file = './../Main/orderDetails.json'
+        
+        // fs.writeFile(file, orderDetails, function (err) {
+        //     console.error(err)
+        // })
+        console.log(orderDetails);
+    }
+    handleLocationTabData(payload){
+        
+        this.setState({
+            ac_type: payload.ac_type,
+            location: payload.location,
+            service_type: payload.service_type
+        })
+    }
+    handleTimeTabData(payload){
+        this.setState({
+            address: payload.address,
+            date: payload.date,
+            pincode: payload.pincode,
+            time: payload.time
+        })
+    }                                   
+    handleContactTabData(payload){
+        this.setState({
+            contact_number: payload.contact_number,
+            email: payload.email,
+            name: payload.name
+        })
+    }
+    handlePaymentTabData(payload){
+        this.setState({
+            payment_mode: payload.payment_mode
+        })
     }
 
 
     render() {
-        const inputProps = {
-            value: this.state.address,
-            onChange: this.onChange,
-            type: 'search',
-            placeholder: 'Enter your location...',
-            autoFocus: true,
-          }
-          const cssClasses = {
-            
-            input: 'form-control get-order-control',
-            autocompleteContainer: 'autocomplete-container',
-            autocompleteItem: 'autocomplete-item'
-           
-          }
-         
-          const AutocompleteItem = ({ suggestion }) => (<div><i className="fa fa-map-marker"/>{suggestion}</div>)
-
+       
         return (
             <section className="order-form-section">
                             <div className="container">
@@ -88,10 +138,10 @@ export default class FormFlow extends Component {
                                         </li>
                                     </ul></div>
                                     <div className="tab-content">
-                                        <LocationTab />
-                                        <TimeTab />                                    
-                                        <ContactTab />
-                                        <PaymentTab />
+                                        <LocationTab updateLocationTabData={this.handleLocationTabData} />
+                                        <TimeTab updateTimeTabData={this.handleTimeTabData} />                                    
+                                        <ContactTab updateContactTabData={this.handleContactTabData} />
+                                        <PaymentTab updatePaymentTabData={this.handlePaymentTabData} insertData={this.handleDataInsertion}/>
                                         <div className="clearfix" />
                                     </div>
                                 </div>

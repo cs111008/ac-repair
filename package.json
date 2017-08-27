@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "jsonfile": "^3.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-places-autocomplete": "^5.4.2",

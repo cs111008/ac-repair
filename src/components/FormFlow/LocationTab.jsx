@@ -35,7 +35,8 @@ export default class LocationTab extends Component {
                 "ac_type": this.state.acType
             };
             
-            console.log('Success----------', payload)
+           // console.log('Success----------', payload)
+            this.props.updateLocationTabData(payload)
        
     }
 

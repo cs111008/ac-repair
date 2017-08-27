@@ -20,15 +20,14 @@ export default class Header extends Component {
                         <span className="icon-bar" />
                         <span className="icon-bar" />
                     </button>
-                    <a className="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt /></a>
+                    <a className="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt />CoolOxy</a>
                     </div>
                     {/* Collect the nav links, forms, and other content for toggling */}
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-right main-nav">
                         <li><a href="#intro">Intro</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#team">Schedule Repairing</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
+                       <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#modal1" className="btn btn-blue">Sign Up</a></li>
                     </ul>
                     </div>

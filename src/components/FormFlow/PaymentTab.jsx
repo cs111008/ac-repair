@@ -16,7 +16,8 @@ export default class PaymentTab extends Component {
             "payment_mode": e.target.paymentMode.value
             };
             
-        console.log('Success----------', payload)
+        this.props.updatePaymentTabData(payload)    
+        this.props.insertData()
        
     }
 
